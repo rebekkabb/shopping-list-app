@@ -4,7 +4,8 @@ import com.example.mobilab_test_assignment.model.ItemModel
 import com.example.mobilab_test_assignment.model.ListModel
 
 object MockApi : Api {
-    private val lists: MutableMap<Int, ListModel> = hashMapOf(1 to ListModel(1, "Test"))
+    private val lists: MutableMap<Int, ListModel> =
+        hashMapOf(1 to ListModel(1, "Test"), 2 to ListModel(2, "Test2"))
     private val items: MutableMap<Int, ItemModel> = HashMap()
 
     private var latestListId: Int = 1
@@ -12,6 +13,10 @@ object MockApi : Api {
 
     override fun getLists(): List<ListModel> {
         return lists.values.toList()
+    }
+
+    override fun getList(listId: Int): ListModel {
+        return lists[listId]!!
     }
 
     override fun getItems(listId: Int): List<ItemModel> {

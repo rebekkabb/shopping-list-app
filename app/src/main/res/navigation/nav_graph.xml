@@ -12,17 +12,18 @@
         tools:layout="@layout/fragment_first" >
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_move_to_items"
+            app:destination="@id/ItemsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.mobilab_test_assignment.fragments.SecondFragment"
+        android:id="@+id/ItemsFragment"
+        android:name="com.example.mobilab_test_assignment.fragments.ItemsFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
+        tools:layout="@layout/items_fragment" >
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_back_to_lists"
             app:destination="@id/FirstFragment" />
     </fragment>
+
 </navigation>

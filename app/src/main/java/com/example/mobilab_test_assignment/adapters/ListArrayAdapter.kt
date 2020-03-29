@@ -1,4 +1,4 @@
-package com.example.mobilab_test_assignment
+package com.example.mobilab_test_assignment.adapters
 
 import android.app.Activity
 import android.content.Context
@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.MockApi
 import com.example.mobilab_test_assignment.model.ListModel
 

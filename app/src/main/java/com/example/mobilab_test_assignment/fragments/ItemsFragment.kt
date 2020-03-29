@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
+import com.example.mobilab_test_assignment.adapters.ItemArrayAdapter
 import com.example.mobilab_test_assignment.api.MockApi
 
 /**
@@ -31,13 +33,11 @@ class ItemsFragment : Fragment() {
 
         val listTitle = view.findViewById<TextView>(R.id.listTitle)
         listTitle.text = MockApi.getList(listId).name
-        //TODO display items
-        /*
-        val lists = MockApi.getLists()
-        val adapter = ListArrayAdapter(context!!, R.layout.list_list, ArrayList(lists))
-        val listView: ListView = view.findViewById(R.id.listList)
+
+        val items = MockApi.getItems(listId)
+        val adapter = ItemArrayAdapter(context!!, R.layout.item_list, ArrayList(items))
+        val listView: ListView = view.findViewById(R.id.itemList)
         listView.adapter = adapter
-         */
 
         view.findViewById<Button>(R.id.button_back).setOnClickListener {
             findNavController().navigate(R.id.action_back_to_lists)

@@ -6,7 +6,11 @@ import com.example.mobilab_test_assignment.model.ListModel
 object MockApi : Api {
     private val lists: MutableMap<Int, ListModel> =
         hashMapOf(1 to ListModel(1, "Test"), 2 to ListModel(2, "Test2"))
-    private val items: MutableMap<Int, ItemModel> = HashMap()
+    private val items: MutableMap<Int, ItemModel> =
+        hashMapOf(
+            1 to ItemModel(1, 1, "Juust", false),
+            2 to ItemModel(2, 1, "Makrapulk", true)
+        )
 
     private var latestListId: Int = 1
     private var latestItemId: Int = 1
@@ -20,7 +24,7 @@ object MockApi : Api {
     }
 
     override fun getItems(listId: Int): List<ItemModel> {
-        return items.values.toList()
+        return items.filter { (_, value) -> value.listId == listId }.values.toList()
     }
 
     override fun addList(listModel: ListModel): ListModel {

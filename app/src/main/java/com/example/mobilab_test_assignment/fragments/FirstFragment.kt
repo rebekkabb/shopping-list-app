@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mobilab_test_assignment.ListArrayAdapter
 import com.example.mobilab_test_assignment.R
+import com.example.mobilab_test_assignment.adapters.ListArrayAdapter
 import com.example.mobilab_test_assignment.api.MockApi
 
 /**
@@ -29,7 +29,12 @@ class FirstFragment : Fragment() {
 
         val lists = MockApi.getLists()
         val adapter =
-            ListArrayAdapter(context!!, R.layout.list_list, ArrayList(lists), findNavController())
+            ListArrayAdapter(
+                context!!,
+                R.layout.list_list,
+                ArrayList(lists),
+                findNavController()
+            )
         val listView: ListView = view.findViewById(R.id.listList)
         listView.adapter = adapter
     }

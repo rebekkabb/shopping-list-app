@@ -1,0 +1,2 @@
+rootProject.name='Mobilab-test-assignment'
+include ':app'

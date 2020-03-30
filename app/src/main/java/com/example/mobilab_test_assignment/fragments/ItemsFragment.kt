@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.adapters.ItemArrayAdapter
-import com.example.mobilab_test_assignment.api.MockApi
 import com.example.mobilab_test_assignment.api.getApi
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.items_fragment.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -31,6 +32,11 @@ class ItemsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listId = arguments!!.getInt("listId")
+
+        addItemFab.setOnClickListener{ view ->
+            Snackbar.make(view, "Lisame uuue itemiiiiii", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
 
         val listTitle = view.findViewById<TextView>(R.id.listTitle)
         listTitle.text = getApi().getList(listId).name

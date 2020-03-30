@@ -9,7 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="com.example.mobilab_test_assignment.fragments.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
+        tools:layout="@layout/lists_fragment" >
 
         <action
             android:id="@+id/action_move_to_items"

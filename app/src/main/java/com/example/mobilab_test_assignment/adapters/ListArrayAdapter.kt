@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.MockApi
+import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ListModel
 
 
@@ -40,7 +41,7 @@ class ListArrayAdapter(
         }
 
         button.setOnClickListener {
-            MockApi.deleteList(listItem.id)
+            getApi().deleteList(listItem.id)
             remove(listItem)
             notifyDataSetChanged()
         }

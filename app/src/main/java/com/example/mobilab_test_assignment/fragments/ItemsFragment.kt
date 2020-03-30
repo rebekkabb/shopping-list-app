@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.adapters.ItemArrayAdapter
 import com.example.mobilab_test_assignment.api.MockApi
+import com.example.mobilab_test_assignment.api.getApi
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -32,9 +33,9 @@ class ItemsFragment : Fragment() {
         val listId = arguments!!.getInt("listId")
 
         val listTitle = view.findViewById<TextView>(R.id.listTitle)
-        listTitle.text = MockApi.getList(listId).name
+        listTitle.text = getApi().getList(listId).name
 
-        val items = MockApi.getItems(listId)
+        val items = getApi().getItems(listId)
         val adapter = ItemArrayAdapter(context!!, R.layout.item_list, ArrayList(items))
         val listView: ListView = view.findViewById(R.id.itemList)
         listView.adapter = adapter

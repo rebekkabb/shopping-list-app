@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.adapters.ListArrayAdapter
-import com.example.mobilab_test_assignment.api.MockApi
+import com.example.mobilab_test_assignment.api.getApi
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -27,7 +27,7 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val lists = MockApi.getLists()
+        val lists = getApi().getLists()
         val adapter =
             ListArrayAdapter(
                 context!!,

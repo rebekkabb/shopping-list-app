@@ -13,3 +13,7 @@ interface Api {
     fun deleteList(listId: Int)
     fun changeItemStatus(itemId: Int, itemStatus: Boolean)
 }
+
+fun getApi(): Api {
+    return MockApi
+}

@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.MockApi
+import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ItemModel
 
 
@@ -36,13 +37,13 @@ class ItemArrayAdapter(
 
 
         button.setOnClickListener {
-            MockApi.deleteItem(item.id)
+            getApi().deleteItem(item.id)
             remove(item)
             notifyDataSetChanged()
         }
 
         checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-            MockApi.changeItemStatus(item.id, isChecked)
+            getApi().changeItemStatus(item.id, isChecked)
             insert(item.copy(checkedState = isChecked), position)
             remove(item)
             notifyDataSetChanged()

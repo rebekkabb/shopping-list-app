@@ -2,9 +2,10 @@ package com.example.mobilab_test_assignment.api
 
 import com.example.mobilab_test_assignment.model.ItemModel
 import com.example.mobilab_test_assignment.model.ListModel
+import retrofit2.Callback
 
 interface Api {
-    fun getLists(): List<ListModel>
+    fun getLists(callback: Callback<List<ListModel>>)
     fun getList(listId: Int): ListModel
     fun getItems(listId: Int): List<ItemModel>
     fun addList(listModel: ListModel): ListModel
@@ -15,5 +16,5 @@ interface Api {
 }
 
 fun getApi(): Api {
-    return MockApi
+    return RealApi()
 }

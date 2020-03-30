@@ -4,6 +4,8 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.mobilab_test_assignment.model.ItemModel
 import com.example.mobilab_test_assignment.model.ListModel
+import retrofit2.Callback
+import retrofit2.Response
 
 object MockApi : Api {
     private val lists: MutableMap<Int, ListModel> =
@@ -17,8 +19,8 @@ object MockApi : Api {
     private var latestListId: Int = 3
     private var latestItemId: Int = 3
 
-    override fun getLists(): List<ListModel> {
-        return lists.values.toList()
+    override fun getLists(callback: Callback<List<ListModel>>) {
+        callback.onResponse(null, Response.success(lists.values.toList()))
     }
 
     override fun getList(listId: Int): ListModel {

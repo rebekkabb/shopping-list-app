@@ -9,7 +9,6 @@ import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
 import com.example.mobilab_test_assignment.R
-import com.example.mobilab_test_assignment.api.MockApi
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ItemModel
 

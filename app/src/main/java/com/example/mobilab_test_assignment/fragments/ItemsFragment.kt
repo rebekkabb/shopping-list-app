@@ -33,7 +33,7 @@ class ItemsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val listId = arguments!!.getInt("listId")
 
-        addItemFab.setOnClickListener{ view ->
+        addItemFab.setOnClickListener { view ->
             Snackbar.make(view, "Lisame uuue itemiiiiii", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }

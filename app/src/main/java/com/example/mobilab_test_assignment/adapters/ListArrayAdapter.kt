@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import com.example.mobilab_test_assignment.R
-import com.example.mobilab_test_assignment.api.MockApi
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ListModel
 

@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.adapters.ListArrayAdapter
 import com.example.mobilab_test_assignment.api.getApi
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.lists_fragment.*
 
 /**
@@ -30,8 +29,7 @@ class ListsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addListFab.setOnClickListener { view ->
-            Snackbar.make(view, "Lisame uuue listiiiii", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            findNavController().navigate(R.id.action_to_add_list)
         }
 
         val lists = getApi().getLists()

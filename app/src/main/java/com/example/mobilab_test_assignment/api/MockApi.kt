@@ -1,5 +1,7 @@
 package com.example.mobilab_test_assignment.api
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.mobilab_test_assignment.model.ItemModel
 import com.example.mobilab_test_assignment.model.ListModel
 
@@ -12,8 +14,8 @@ object MockApi : Api {
             2 to ItemModel(2, 1, "Makrapulk", true)
         )
 
-    private var latestListId: Int = 1
-    private var latestItemId: Int = 1
+    private var latestListId: Int = 3
+    private var latestItemId: Int = 3
 
     override fun getLists(): List<ListModel> {
         return lists.values.toList()
@@ -35,13 +37,14 @@ object MockApi : Api {
     }
 
     override fun addItem(itemModel: ItemModel): ItemModel {
-        val modelWithId = itemModel.copy(id = latestListId)
+        val modelWithId = itemModel.copy(id = latestItemId)
         items[modelWithId.id] = modelWithId
         latestItemId++
         return modelWithId
     }
 
     override fun deleteItem(itemId: Int) {
+        Log.d(TAG, "DELETE $itemId $items")
         items.remove(itemId)
     }
 
@@ -50,8 +53,13 @@ object MockApi : Api {
     }
 
     override fun changeItemStatus(itemId: Int, itemStatus: Boolean) {
-        val itemModel = items[itemId]
-        val modelWithChange = itemModel!!.copy(checkedState = itemStatus)
-        items[itemId] = modelWithChange
+        Log.d(TAG, "CHANGE $itemId $items")
+        if (items.containsKey(itemId)) {
+            val itemModel = items[itemId]
+            val modelWithChange = itemModel!!.copy(checkedState = itemStatus)
+            items[itemId] = modelWithChange
+        } else {
+            throw IllegalAccessException("The item you are trying to change does not exist")
+        }
     }
 }

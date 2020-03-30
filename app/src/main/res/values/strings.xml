@@ -2,14 +2,16 @@
     <string name="app_name">Mobilab-test-assignment</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="lists_fragment_label">Lists Fragment</string>
+    <string name="items_fragment_label">Items Fragment</string>
+    <string name="list_add_fragment_label">Add list Fragment</string>
+    <string name="item_add_fragment_label">Add item Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="create">Create</string>
     <string name="back">Back</string>
     <string name="title_of_the_list">Title of the list</string>
-    <string name="title_of_the_item">Title of the item</string>
+    <string name="value_of_the_item">What should we add on the list?</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

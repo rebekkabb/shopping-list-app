@@ -4,10 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.CheckBox
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ItemModel
@@ -42,10 +39,16 @@ class ItemArrayAdapter(
         }
 
         checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-            getApi().changeItemStatus(item.id, isChecked)
-            insert(item.copy(checkedState = isChecked), position)
-            remove(item)
-            notifyDataSetChanged()
+            try {
+                getApi().changeItemStatus(item.id, isChecked)
+
+                insert(item.copy(checkedState = isChecked), position)
+                remove(item)
+                notifyDataSetChanged()
+            } catch (e: IllegalAccessException) {
+                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                notifyDataSetChanged()
+            }
         }
 
         return view

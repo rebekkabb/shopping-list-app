@@ -3,27 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ListsFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/ListsFragment"
         android:name="com.example.mobilab_test_assignment.fragments.ListsFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/lists_fragment_label"
         tools:layout="@layout/lists_fragment" >
 
         <action
             android:id="@+id/action_move_to_items"
             app:destination="@id/ItemsFragment" />
+
+        <action
+            android:id="@+id/action_to_add_list"
+            app:destination="@id/ListAddFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/ItemsFragment"
         android:name="com.example.mobilab_test_assignment.fragments.ItemsFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/items_fragment_label"
         tools:layout="@layout/items_fragment" >
 
         <action
             android:id="@+id/action_back_to_lists"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/ListsFragment" />
+
+        <action
+            android:id="@+id/action_to_add_item"
+            app:destination="@id/ItemAddFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ItemAddFragment"
+        android:name="com.example.mobilab_test_assignment.fragments.ItemAddFragment"
+        android:label="@string/item_add_fragment_label"
+        tools:layout="@layout/item_add_fragment">
+
+        <action
+            android:id="@+id/action_back_to_items"
+            app:destination="@id/ItemsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListAddFragment"
+        android:name="com.example.mobilab_test_assignment.fragments.ListAddFragment"
+        android:label="@string/list_add_fragment_label"
+        tools:layout="@layout/list_add_fragment">
+
+        <action
+            android:id="@+id/action_back_to_lists"
+            app:destination="@id/ListsFragment" />
     </fragment>
 
 </navigation>

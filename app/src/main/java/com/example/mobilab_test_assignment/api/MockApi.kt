@@ -23,19 +23,24 @@ object MockApi : Api {
         callback.onResponse(null, Response.success(lists.values.toList()))
     }
 
-    override fun getList(listId: Int): ListModel {
-        return lists[listId]!!
+    override fun getList(listId: Int, callback: Callback<ListModel>) {
+        callback.onResponse(null, Response.success(lists[listId]!!))
     }
 
-    override fun getItems(listId: Int): List<ItemModel> {
-        return items.filter { (_, value) -> value.listId == listId }.values.toList()
+    override fun getItems(listId: Int, callback: Callback<List<ItemModel>>) {
+        callback.onResponse(
+            null, Response.success(
+                items.filter { (_, value) -> value.listId == listId }.values.toList()
+            )
+        )
     }
 
-    override fun addList(listModel: ListModel): ListModel {
+    override fun addList(listModel: ListModel, callback: Callback<ListModel>) {
         val modelWithId = listModel.copy(id = latestListId)
         lists[modelWithId.id] = modelWithId
         latestListId++
-        return modelWithId
+        callback.onResponse(null, Response.success(modelWithId))
+
     }
 
     override fun addItem(itemModel: ItemModel): ItemModel {

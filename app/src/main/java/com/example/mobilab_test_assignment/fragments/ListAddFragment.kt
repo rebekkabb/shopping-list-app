@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ListModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -34,8 +38,23 @@ class ListAddFragment : Fragment() {
         view.findViewById<Button>(R.id.button_create).setOnClickListener {
             if (inputField.text.toString().trim().length > 1) {
                 val inputTitle = inputField.text.toString().trim()
-                getApi().addList(ListModel(0, inputTitle))
-                findNavController().navigate(R.id.action_back_to_lists)
+
+                getApi().addList(ListModel(0, inputTitle), object : Callback<ListModel> {
+                    override fun onFailure(call: Call<ListModel>?, t: Throwable) {
+                        Toast.makeText(
+                            context, "Problem occurred while requesting items",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<ListModel>?,
+                        response: Response<ListModel>
+                    ) {
+                        findNavController().navigate(R.id.action_back_to_lists)
+                    }
+                })
+
             } else {
                 inputField.setError("List name can no be empty!")
             }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,9 @@ import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ItemModel
 import kotlinx.android.synthetic.main.item_add_fragment.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -37,13 +41,24 @@ class ItemAddFragment : Fragment() {
         view.findViewById<Button>(R.id.button_create2).setOnClickListener {
             if (inputField.text.toString().trim().length > 1) {
                 val inputValue = inputField.text.toString().trim()
-                getApi().addItem(ItemModel(0, listId, inputValue, false))
-                findNavController().navigate(R.id.action_back_to_items, bundle)
+
+                getApi().addItem(ItemModel(0, listId, inputValue, false), object :
+                    Callback<ItemModel> {
+                    override fun onFailure(call: Call<ItemModel>, t: Throwable) {
+                        Toast.makeText(
+                            context, "Problem occurred while adding a new item",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                    override fun onResponse(call: Call<ItemModel>, response: Response<ItemModel>) {
+                        findNavController().navigate(R.id.action_back_to_items, bundle)
+                    }
+                })
+
             } else {
                 inputValue.setError("Item value can not be empty!")
             }
-
-
         }
 
         view.findViewById<Button>(R.id.button_back).setOnClickListener {

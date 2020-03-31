@@ -44,19 +44,19 @@ class RealApi : Api {
         client.addList(listModel).enqueue(callback)
     }
 
-    override fun addItem(itemModel: ItemModel): ItemModel {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun addItem(itemModel: ItemModel, callback: Callback<ItemModel>) {
+        client.addItem(itemModel).enqueue(callback)
     }
 
-    override fun deleteItem(itemId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun deleteItem(itemId: Int, callback: Callback<Unit>) {
+        client.deleteItem(itemId).enqueue(callback)
     }
 
-    override fun deleteList(listId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun deleteList(listId: Int, callback: Callback<Unit>) {
+        client.deleteList(listId).enqueue(callback)
     }
 
-    override fun changeItemStatus(itemId: Int, itemStatus: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun changeItemStatus(itemId: Int, itemStatus: Boolean, callback: Callback<Unit>) {
+        client.changeItemStatus(itemId, itemStatus).enqueue(callback)
     }
 }

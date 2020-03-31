@@ -42,7 +42,7 @@ class ListAddFragment : Fragment() {
                 getApi().addList(ListModel(0, inputTitle), object : Callback<ListModel> {
                     override fun onFailure(call: Call<ListModel>?, t: Throwable) {
                         Toast.makeText(
-                            context, "Problem occurred while requesting items",
+                            context, "Problem occurred while adding the new list",
                             Toast.LENGTH_LONG
                         ).show()
                     }

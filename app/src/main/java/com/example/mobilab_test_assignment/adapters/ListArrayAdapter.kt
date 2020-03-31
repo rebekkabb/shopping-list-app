@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ListModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ListArrayAdapter(
@@ -40,11 +44,20 @@ class ListArrayAdapter(
         }
 
         button.setOnClickListener {
-            getApi().deleteList(listItem.id)
-            remove(listItem)
-            notifyDataSetChanged()
-        }
+            getApi().deleteList(listItem.id, object : Callback<Unit> {
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Toast.makeText(
+                        context, "Problem occurred while deleting the list",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    remove(listItem)
+                    notifyDataSetChanged()
+                }
+            })
+        }
         return view
     }
 }

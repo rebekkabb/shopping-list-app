@@ -9,10 +9,10 @@ interface Api {
     fun getList(listId: Int, callback: Callback<ListModel>)
     fun getItems(listId: Int, callback: Callback<List<ItemModel>>)
     fun addList(listModel: ListModel, callback: Callback<ListModel>)
-    fun addItem(itemModel: ItemModel): ItemModel
-    fun deleteItem(itemId: Int)
-    fun deleteList(listId: Int)
-    fun changeItemStatus(itemId: Int, itemStatus: Boolean)
+    fun addItem(itemModel: ItemModel, callback: Callback<ItemModel>)
+    fun deleteItem(itemId: Int, callback: Callback<Unit>)
+    fun deleteList(listId: Int, callback: Callback<Unit>)
+    fun changeItemStatus(itemId: Int, itemStatus: Boolean, callback: Callback<Unit>)
 }
 
 fun getApi(): Api {

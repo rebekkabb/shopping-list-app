@@ -8,6 +8,9 @@ import android.widget.*
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ItemModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ItemArrayAdapter(
@@ -33,18 +36,37 @@ class ItemArrayAdapter(
 
 
         button.setOnClickListener {
-            getApi().deleteItem(item.id)
-            remove(item)
-            notifyDataSetChanged()
+            getApi().deleteItem(item.id, object : Callback<Unit> {
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Toast.makeText(
+                        context, "Problem occurred while deleting the item",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    remove(item)
+                    notifyDataSetChanged()
+                }
+            })
         }
 
         checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
             try {
-                getApi().changeItemStatus(item.id, isChecked)
+                getApi().changeItemStatus(item.id, isChecked, object : Callback<Unit> {
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        Toast.makeText(
+                            context, "Problem occurred while deleting the list",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
 
-                insert(item.copy(checkedState = isChecked), position)
-                remove(item)
-                notifyDataSetChanged()
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        insert(item.copy(checkedState = isChecked), position)
+                        remove(item)
+                        notifyDataSetChanged()
+                    }
+                })
             } catch (e: IllegalAccessException) {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                 notifyDataSetChanged()

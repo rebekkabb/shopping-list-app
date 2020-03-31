@@ -4,8 +4,8 @@
 
 This application is made as a test assignment for Mobilab. The application should make everyday shopping easier by enabling the user to list down items to buy. While shopping, the application should also help to track items that are already collected.
 
-### Server/db/backend
-#### Running it on you own computer locally
+## Server/db/backend
+### Running it on you own computer locally
 Firstly you must set up the server on your own system (https://github.com/rebekkabb/shopping-list-app-server), the same instructions are there too.
 1) Make sure an instance of Postgre is running
 2) Define the right env variables (ones in application.properties)
@@ -20,7 +20,7 @@ SHOPPING_LIST_APP_DB_PASSWORD
 
 #### Link to the one I already deployed on Heroku: https://desolate-tundra-54863.herokuapp.com/
 
-### Application
+## Application
 The apk for the application is provided in the releases.
 
 To run the application for development:

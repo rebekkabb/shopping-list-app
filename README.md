@@ -6,7 +6,7 @@ This application is made as a test assignment for Mobilab. The application shoul
 
 ### Server/db/backend
 #### Running it on you own computer locally
-Firstly you must set up the server on your own system (gitlink to project), the same instructions are there too.
+Firstly you must set up the server on your own system (https://github.com/rebekkabb/shopping-list-app-server), the same instructions are there too.
 1) Make sure an instance of Postgre is running
 2) Define the right env variables (ones in application.properties)
 ```

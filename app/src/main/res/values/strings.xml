@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobilab-test-assignment</string>
+    <string name="app_name">Shopping List App</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="lists_fragment_label">Lists Fragment</string>

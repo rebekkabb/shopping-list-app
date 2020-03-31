@@ -1,7 +1,5 @@
 package com.example.mobilab_test_assignment.api
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.example.mobilab_test_assignment.model.ItemModel
 import com.example.mobilab_test_assignment.model.ListModel
 import retrofit2.Callback
@@ -54,7 +52,7 @@ object MockApi : Api {
     }
 
     override fun deleteItem(itemId: Int, callback: Callback<Unit>) {
-        Log.d(TAG, "DELETE $itemId $items")
+        //Log.d(TAG, "DELETE $itemId $items")
         items.remove(itemId)
         callback.onResponse(null, Response.success(Unit))
     }
@@ -65,7 +63,7 @@ object MockApi : Api {
     }
 
     override fun changeItemStatus(itemId: Int, itemStatus: Boolean, callback: Callback<Unit>) {
-        Log.d(TAG, "CHANGE $itemId $items")
+        //Log.d(TAG, "CHANGE $itemId $items")
         if (items.containsKey(itemId)) {
             val itemModel = items[itemId]
             val modelWithChange = itemModel!!.copy(checkedState = itemStatus)

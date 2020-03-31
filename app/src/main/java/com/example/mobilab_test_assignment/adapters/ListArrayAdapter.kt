@@ -53,6 +53,7 @@ class ListArrayAdapter(
          * was clicked then updates the page
          */
         button.setOnClickListener {
+            remove(listItem)
             getApi().deleteList(listItem.id, object : Callback<Unit> {
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
                     Toast.makeText(
@@ -62,7 +63,6 @@ class ListArrayAdapter(
                 }
 
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                    remove(listItem)
                     notifyDataSetChanged()
                 }
             })

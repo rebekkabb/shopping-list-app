@@ -42,6 +42,7 @@ class ItemArrayAdapter(
          * was clicked then updates the page
          */
         button.setOnClickListener {
+            remove(item)
             getApi().deleteItem(item.id, object : Callback<Unit> {
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
                     Toast.makeText(
@@ -51,7 +52,6 @@ class ItemArrayAdapter(
                 }
 
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                    remove(item)
                     notifyDataSetChanged()
                 }
             })
@@ -63,6 +63,8 @@ class ItemArrayAdapter(
          */
         checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
             try {
+                insert(item.copy(checkedState = isChecked), position)
+                remove(item)
                 getApi().changeItemStatus(item.id, isChecked, object : Callback<Unit> {
                     override fun onFailure(call: Call<Unit>, t: Throwable) {
                         Toast.makeText(
@@ -72,8 +74,6 @@ class ItemArrayAdapter(
                     }
 
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                        insert(item.copy(checkedState = isChecked), position)
-                        remove(item)
                         notifyDataSetChanged()
                     }
                 })

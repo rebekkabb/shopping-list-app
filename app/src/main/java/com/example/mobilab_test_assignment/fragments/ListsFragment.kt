@@ -18,7 +18,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * ListsFragment manages the portion of activities that are connected to displaying lists and
+ * going forward to item display page or to list creation page
  */
 class ListsFragment : Fragment() {
 
@@ -33,12 +34,13 @@ class ListsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        addListFab.setOnClickListener {
-            findNavController().navigate(R.id.action_to_add_list)
-        }
-
         val listView: ListView = view.findViewById(R.id.listList)
 
+        /**
+         * As soon as the view is created we call getLists() to get all the information about the
+         * lists which we want to display
+         * We move into ListArrayAdapter to display them all
+         */
         getApi().getLists(
             object : Callback<List<ListModel>> {
                 override fun onFailure(call: Call<List<ListModel>>?, t: Throwable?) {
@@ -63,5 +65,12 @@ class ListsFragment : Fragment() {
                     listView.adapter = adapter
                 }
             })
+
+        /**
+         * Listens for click and goes on to the list creation page
+         */
+        addListFab.setOnClickListener {
+            findNavController().navigate(R.id.action_to_add_list)
+        }
     }
 }

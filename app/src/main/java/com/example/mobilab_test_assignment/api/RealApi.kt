@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RealApi : Api {
 
+    //If you want set up the server on your own system and run the application that way, this you must insert your own IP
     private val API_BASE_URL = "http://192.168.1.93:8080/"
 
     private val client: RestApiDescription

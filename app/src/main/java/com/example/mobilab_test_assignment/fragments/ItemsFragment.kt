@@ -22,7 +22,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * ItemsFragment manages the portion of activities that are connected to displaying items on the
+ * page and going forward to item creation page or back to lists page
  */
 class ItemsFragment : Fragment() {
 
@@ -37,17 +38,15 @@ class ItemsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val listId = arguments!!.getInt("listId")
-
         var bundle = bundleOf("id" to listId)
-
-
-        addItemFab.setOnClickListener { view ->
-            findNavController().navigate(R.id.action_to_add_item, bundle)
-        }
-
         val listTitle = view.findViewById<TextView>(R.id.listTitle)
 
+        /**
+         * As soon as the view is created we call getList() to get all the information about the
+         * list whose title we want to display on the page
+         */
         getApi().getList(listId, object : Callback<ListModel> {
             override fun onFailure(call: Call<ListModel>?, t: Throwable?) {
                 Toast.makeText(
@@ -66,6 +65,11 @@ class ItemsFragment : Fragment() {
 
         val listView: ListView = view.findViewById(R.id.itemList)
 
+        /**
+         * As soon as the view is created we call getItems() to get all the information about the
+         * lists items which we want to display
+         * We move into ItemArrayAdapter to display them all
+         */
         getApi().getItems(listId, object : Callback<List<ItemModel>> {
             override fun onFailure(call: Call<List<ItemModel>>?, t: Throwable) {
                 Toast.makeText(
@@ -84,6 +88,16 @@ class ItemsFragment : Fragment() {
             }
         })
 
+        /**
+         * Listens for click and goes on to the item creation page
+         */
+        addItemFab.setOnClickListener { view ->
+            findNavController().navigate(R.id.action_to_add_item, bundle)
+        }
+
+        /**
+         * Listens for click and returns to the lists page
+         */
         view.findViewById<Button>(R.id.button_back).setOnClickListener {
             findNavController().navigate(R.id.action_back_to_lists)
         }

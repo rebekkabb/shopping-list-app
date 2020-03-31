@@ -1,5 +1,6 @@
 package com.example.mobilab_test_assignment.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +10,18 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.mobilab_test_assignment.R
 import com.example.mobilab_test_assignment.api.getApi
 import com.example.mobilab_test_assignment.model.ItemModel
-import kotlinx.android.synthetic.main.item_add_fragment.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * ItemAddFragment manages the portion of activities that are connected to adding an item to a list,
+ * pressing the back button etc
  */
 class ItemAddFragment : Fragment() {
 
@@ -38,7 +40,37 @@ class ItemAddFragment : Fragment() {
         val bundle = bundleOf("listId" to listId)
         val inputField = view.findViewById<EditText>(R.id.inputValue)
 
-        view.findViewById<Button>(R.id.button_create2).setOnClickListener {
+        view.findViewById<Button>(R.id.button_create2).setOnClickListener(
+            AddItemOnClickListener(
+                inputField,
+                listId,
+                context!!,
+                findNavController(),
+                bundle
+            )
+        )
+
+        /**
+         * Listens for click and returns to the items page
+         */
+        view.findViewById<Button>(R.id.button_back).setOnClickListener {
+            findNavController().navigate(R.id.action_back_to_items, bundle)
+        }
+    }
+
+    /**
+     * Listens for click on and checks if the input in inputField is long enough
+     * if everything is in order, it calls for addItem to add the item and returns to the
+     * items page
+     */
+    class AddItemOnClickListener(
+        val inputField: EditText,
+        val listId: Int,
+        val context: Context,
+        val navController: NavController,
+        val bundle: Bundle
+    ) : View.OnClickListener {
+        override fun onClick(v: View?) {
             if (inputField.text.toString().trim().length > 1) {
                 val inputValue = inputField.text.toString().trim()
 
@@ -52,17 +84,14 @@ class ItemAddFragment : Fragment() {
                     }
 
                     override fun onResponse(call: Call<ItemModel>, response: Response<ItemModel>) {
-                        findNavController().navigate(R.id.action_back_to_items, bundle)
+                        navController.navigate(R.id.action_back_to_items, bundle)
                     }
                 })
 
             } else {
-                inputValue.setError("Item value can not be empty!")
+                inputField.setError("Item value can not be so short!")
             }
         }
 
-        view.findViewById<Button>(R.id.button_back).setOnClickListener {
-            findNavController().navigate(R.id.action_back_to_items, bundle)
-        }
     }
 }

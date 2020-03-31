@@ -15,6 +15,9 @@ interface Api {
     fun changeItemStatus(itemId: Int, itemStatus: Boolean, callback: Callback<Unit>)
 }
 
+/**
+ * With this function you can switch between RealApi and MockApi
+ */
 fun getApi(): Api {
     return RealApi()
 }

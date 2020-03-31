@@ -7,6 +7,9 @@ import com.example.mobilab_test_assignment.model.ListModel
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * MockApi was created for easy local development, before the server and database were set up
+ */
 object MockApi : Api {
     private val lists: MutableMap<Int, ListModel> =
         hashMapOf(1 to ListModel(1, "Test"), 2 to ListModel(2, "Test2"))

@@ -5,6 +5,9 @@ import com.example.mobilab_test_assignment.model.ListModel
 import retrofit2.Call
 import retrofit2.http.*
 
+/**
+ * RealApiDecriptions sets the correct HTTP paths for each methods, the methods are described in backend
+ */
 interface RestApiDescription {
 
     @GET("list")

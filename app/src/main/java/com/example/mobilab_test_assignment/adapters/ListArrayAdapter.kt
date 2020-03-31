@@ -17,7 +17,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
+/**
+ * ListArrayAdapter manages the portion of activities that are connected to displaying the lists in
+ * a column, more specifically displaying each lists data and deleting it
+ */
 class ListArrayAdapter(
     context: Context,
     resource: Int,
@@ -28,21 +31,27 @@ class ListArrayAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = (context as Activity).layoutInflater
         val view: View
-
         view = convertView ?: inflater.inflate(R.layout.list_list, parent, false)
 
         val listItem = getItem(position)
-
         val text = view.findViewById<TextView>(R.id.textView)
         text.text = (listItem!!.name)
 
         val button = view.findViewById<ImageButton>(R.id.imageButton)
 
+        /**
+         * This listens for click in one of the lists rows and goes to the items page of that list
+         * with a bundle that contains the listId
+         */
         view.setOnClickListener {
             val bundle = bundleOf("listId" to listItem.id)
             navController.navigate(R.id.action_move_to_items, bundle)
         }
 
+        /**
+         * This listens for click in one of the lists rows and deletes the list whose row button
+         * was clicked then updates the page
+         */
         button.setOnClickListener {
             getApi().deleteList(listItem.id, object : Callback<Unit> {
                 override fun onFailure(call: Call<Unit>, t: Throwable) {

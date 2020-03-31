@@ -1,4 +1,4 @@
-# Shopping-list-app
+# shopping-list-app
 
 ## The goal of the application
 

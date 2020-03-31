@@ -37,4 +37,4 @@ From the five options of platforms I chose the option of Native Android applicat
 ## Any other instructions and notes you have (1.A Java usage reasoning, etc)
 There are not many tests due to my lack of knowledge in this field. I did not know where to start with testing the system, picking out the important bits and the unimportant bits. In university I have written very few tests and most projects do not require tests.  This is a skill I would definitely want to improve. 
 
-#### PS! I did not expect that Heroku would be this slow :( 
+#### PS! I did not expect that putting my server up on Heroku would be this slow :( 

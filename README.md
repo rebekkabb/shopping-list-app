@@ -1,4 +1,5 @@
 # shopping-list-app
+PS! If you run the apk the first time it takes time for Heroku to boot up the server!
 
 ## The goal of the application
 
